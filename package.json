@@ -1,0 +1,30 @@
+{
+  "name": "pr-updater",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "$(npm bin)/tsc",
+    "prepare-release": "$(npm bin)/tsc && mv node_modules node_modules_back && npm install --production && git add -f node_modules && mv -f node_modules_back node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxkomarychev/pr-updater-action.git"
+  },
+  "author": "Max Komarychev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxkomarychev/pr-updater-action/issues"
+  },
+  "homepage": "https://github.com/maxkomarychev/pr-updater-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.1",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.4"
+  }
+}
