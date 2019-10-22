@@ -3940,7 +3940,6 @@ function main() {
         const pullsResponse = yield client.pulls.list(Object.assign(Object.assign({}, github.context.repo), { base: 'master', state: 'open' }));
         const prs = pullsResponse.data;
         yield Promise.all(prs.map((pr) => {
-            // console.log(chalk.yellow("Updating pull request"))
             client.pulls.updateBranch(Object.assign(Object.assign({}, github.context.repo), { pull_number: pr.number }));
         }));
     });
