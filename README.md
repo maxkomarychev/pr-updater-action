@@ -2,9 +2,9 @@
 
 ## Quick start
 
-1. Create user token https://github.com/settings/tokens
-2. Set this token as a secret `USER_TOKEN` in target repository: `https://github.com/<owner>/<repo>/settings/secrets`
-3. create file `.github/workflows/pr-updated.yml` with the following content:
+1. Create user token in [user settings](https://github.com/settings/tokens)
+2. Set this token as a secret `USER_TOKEN` in settings of a target repository: `https://github.com/<owner>/<repo>/settings/secrets`
+3. create file `.github/workflows/pr-updater.yml` with the following content:
 
     ```yml
     name: PR update
