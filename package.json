@@ -18,13 +18,12 @@
   },
   "homepage": "https://github.com/maxkomarychev/gatekeeper#readme",
   "dependencies": {
-    "js-yaml": "^3.13.1",
     "@actions/core": "^1.2.0",
-    "@actions/github": "^1.1.0"
+    "@actions/github": "^1.1.0",
+    "chalk": "^2.4.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
-    "@types/js-yaml": "^3.12.1",
     "@types/node": "^12.11.1",
     "@zeit/ncc": "^0.20.5",
     "jest": "^24.9.0",

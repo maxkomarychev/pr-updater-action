@@ -1,18 +1,8 @@
 import * as core from '@actions/core'
 import * as github from '@actions/github'
-import yaml from 'js-yaml'
-import * as fs from 'fs'
-import readConfig from './read-config'
-
-const config = readConfig()
-console.log('config!', config)
 
 const token = core.getInput('token')
 const client = new github.GitHub(token)
-
-const mode = core.getInput('mode')
-
-// console.log(JSON.stringify(github.context.payload, null, 4))
 
 client.pulls
     .list({
