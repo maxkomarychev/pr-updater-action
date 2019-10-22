@@ -1,0 +1,35 @@
+{
+  "name": "gatekeepr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "$(npm bin)/tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxkomarychev/gatekeeper.git"
+  },
+  "author": "Max Komarychev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxkomarychev/gatekeeper/issues"
+  },
+  "homepage": "https://github.com/maxkomarychev/gatekeeper#readme",
+  "dependencies": {
+    "js-yaml": "^3.13.1",
+    "@actions/core": "^1.2.0",
+    "@actions/github": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "@types/js-yaml": "^3.12.1",
+    "@types/node": "^12.11.1",
+    "@zeit/ncc": "^0.20.5",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
+  }
+}
