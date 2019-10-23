@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "$(npm bin)/tsc",
-    "prepare-release": "$(npm bin)/tsc && mv node_modules node_modules_back && npm install --production && git add -f node_modules && mv -f node_modules_back node_modules"
+    "build": "ncc build -o bin src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -24,6 +23,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.11.1",
+    "@zeit/ncc": "^0.20.5",
     "prettier": "^1.18.2",
     "typescript": "^3.6.4"
   }

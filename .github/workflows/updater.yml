@@ -13,4 +13,3 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.USER_TOKEN }}
-          mode: autoupdate
