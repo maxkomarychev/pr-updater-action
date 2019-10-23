@@ -20,7 +20,7 @@
             steps:
             - uses: actions/checkout@v1
             - name: update all prs
-                uses: maxkomarychev/pr-updater-action@release/v1.0.0
+                uses: maxkomarychev/pr-updater-action@v1.0.0
                 with:
                     token: ${{ secrets.USER_TOKEN }}
     ```
