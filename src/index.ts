@@ -9,7 +9,7 @@ async function main() {
     console.log('base branch?', baseBranch)
     const pullsResponse = await client.pulls.list({
         ...github.context.repo,
-        base: 'master',
+        base: baseBranch,
         state: 'open',
     })
     const prs = pullsResponse.data
