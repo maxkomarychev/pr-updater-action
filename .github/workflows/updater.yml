@@ -10,4 +10,4 @@ jobs:
       - name: update all prs
         uses: ./
         with:
-          token: ${{ secrets.USER_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
