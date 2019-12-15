@@ -5,6 +5,8 @@ const token = core.getInput('token')
 const client = new github.GitHub(token)
 
 async function main() {
+    const baseBranch = github.context.payload.ref
+    console.log('base branch?', baseBranch)
     const pullsResponse = await client.pulls.list({
         ...github.context.repo,
         base: 'master',
