@@ -3883,6 +3883,8 @@ const token = core.getInput('token');
 const client = new github.GitHub(token);
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
+        const baseBranch = github.context.payload.ref;
+        console.log('base branch?', baseBranch);
         const pullsResponse = yield client.pulls.list(Object.assign(Object.assign({}, github.context.repo), { base: 'master', state: 'open' }));
         const prs = pullsResponse.data;
         yield Promise.all(prs.map((pr) => {
