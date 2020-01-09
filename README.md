@@ -25,7 +25,7 @@
                     token: ${{ secrets.USER_TOKEN }}
     ```
 
-4. Now every time code is pushed to branches specified in the workflow all ohter
+4. Now every time code is pushed to branches specified in the workflow all other
 pull requests targeting these branches will be automatically updated.
 
 
