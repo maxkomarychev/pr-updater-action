@@ -15,6 +15,10 @@ async function main() {
     const prs = pullsResponse.data
     await Promise.all(
         prs.map((pr) => {
+            console.log("pr", pr.draft, pr.mergeable, pr)
+            if (!pr.mergeable) 
+                return null
+            
             if (exclude_drafts && pr.draft) 
                 return null
 
