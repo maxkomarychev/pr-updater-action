@@ -4,6 +4,9 @@ inputs:
   token:
     required: true
     description: "Token to perform api calls"
+  exclude_drafts:
+    default: "false"
+    description: "Boolean to indicate whether Draft PRs should be updated"
 
 runs:
   using: node16
