@@ -12,22 +12,18 @@ async function main() {
         base: baseBranch,
         state: 'open',
     })
-    const prs = pullsResponse.data
-    await Promise.all(
-        prs.map((pr) => {
-            console.log("pr", pr.draft, pr.mergeable, pr)
-            if (!pr.mergeable) 
-                return null
-            
-            if (exclude_drafts && pr.draft) 
-                return null
-
-            client.pulls.updateBranch({
-                ...github.context.repo,
-                pull_number: pr.number,
-            })
-        }).filter(p => p),
-    )
+    pullsResponse.data
+        .filter(pr => !exclude_drafts || !pr.draft)
+        .forEach((pr) => {
+            try {
+                await client.pulls.updateBranch({
+                    ...github.context.repo,
+                    pull_number: pr.number,
+                })
+            } catch (e) {
+                console.error("Failed to update branch: ", e.message)
+            }
+        })
 }
 
 main()
