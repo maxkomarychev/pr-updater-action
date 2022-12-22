@@ -12,9 +12,10 @@ async function main() {
         base: baseBranch,
         state: 'open',
     })
-    pullsResponse.data
+    let prs = pullsResponse.data
         .filter(pr => !exclude_drafts || !pr.draft)
-        .forEach((pr) => {
+    prs.forEach((pr) => {
+        console.log(JSON.stringify(pr))
             try {
                 await client.pulls.updateBranch({
                     ...github.context.repo,
