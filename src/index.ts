@@ -15,14 +15,14 @@ async function main() {
     let prs = pullsResponse.data
         .filter(pr => !exclude_drafts || !pr.draft)
     prs.forEach((pr) => {
-        console.log(JSON.stringify(pr))
+        core.info(JSON.stringify(pr))
             try {
                 await client.pulls.updateBranch({
                     ...github.context.repo,
                     pull_number: pr.number,
                 })
             } catch (e) {
-                console.error("Failed to update branch: ", e.message)
+                core.error("Failed to update branch: ", e.message)
             }
         })
 }
