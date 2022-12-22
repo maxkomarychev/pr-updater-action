@@ -7,27 +7,27 @@ const client = new github.GitHub(token)
 
 async function main() {
     core.info("Starting update prs")
-    const baseBranch = github.context.payload.ref
-    const pullsResponse = await client.pulls.list({
-        ...github.context.repo,
-        base: baseBranch,
-        state: 'open',
-    })
-    let prs = pullsResponse.data
-    core.info(JSON.stringify(prs))
-
-    prs.filter(pr => !exclude_drafts || !pr.draft)
-        .forEach((pr) => {
-            core.info(JSON.stringify(pr))
-            try {
-                await client.pulls.updateBranch({
-                    ...github.context.repo,
-                    pull_number: pr.number,
-                })
-            } catch (e) {
-                core.error("Failed to update branch: ", e.message)
-            }
-        })
+    // const baseBranch = github.context.payload.ref
+    // const pullsResponse = await client.pulls.list({
+    //     ...github.context.repo,
+    //     base: baseBranch,
+    //     state: 'open',
+    // })
+    // let prs = pullsResponse.data
+    // core.info(JSON.stringify(prs))
+    //
+    // prs.filter(pr => !exclude_drafts || !pr.draft)
+    //     .forEach((pr) => {
+    //         core.info(JSON.stringify(pr))
+    //         try {
+    //             await client.pulls.updateBranch({
+    //                 ...github.context.repo,
+    //                 pull_number: pr.number,
+    //             })
+    //         } catch (e) {
+    //             core.error("Failed to update branch: ", e.message)
+    //         }
+    //     })
 }
 
 await main()
