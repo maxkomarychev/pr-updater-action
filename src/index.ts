@@ -17,6 +17,7 @@ async function main() {
 
     for (const pr1 of prs.filter(pr => !exclude_drafts || !pr.draft)) {
         try {
+            core.info("Updating PR: " + pr1.url)
             await client.pulls.updateBranch({
                 ...github.context.repo,
                 pull_number: pr1.number,

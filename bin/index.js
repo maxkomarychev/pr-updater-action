@@ -43,10 +43,9 @@ function main() {
         const baseBranch = github.context.payload.ref;
         const pullsResponse = yield client.pulls.list(Object.assign(Object.assign({}, github.context.repo), { base: baseBranch, state: 'open' }));
         let prs = pullsResponse.data;
-        core.info(JSON.stringify(prs));
         for (const pr1 of prs.filter(pr => !exclude_drafts || !pr.draft)) {
-            core.info(JSON.stringify(pr1));
             try {
+                core.info("Updating PR: " + pr1.url);
                 yield client.pulls.updateBranch(Object.assign(Object.assign({}, github.context.repo), { pull_number: pr1.number }));
             }
             catch (error) {
