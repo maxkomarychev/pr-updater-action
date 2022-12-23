@@ -14,10 +14,8 @@ async function main() {
         state: 'open',
     })
     let prs = pullsResponse.data
-    core.info(JSON.stringify(prs))
 
     for (const pr1 of prs.filter(pr => !exclude_drafts || !pr.draft)) {
-        core.info(JSON.stringify(pr1))
         try {
             await client.pulls.updateBranch({
                 ...github.context.repo,
