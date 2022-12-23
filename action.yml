@@ -9,7 +9,7 @@ inputs:
     description: "Boolean to indicate whether Draft PRs should be updated"
 
 runs:
-  using: node16
+  using: node12
   main: bin/index.js
 
 branding:
