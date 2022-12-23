@@ -22,6 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(require("@actions/core"));
 const github = __importStar(require("@actions/github"));
@@ -29,6 +38,22 @@ const token = core.getInput('token');
 const exclude_drafts = core.getInput('exclude_drafts').toLowerCase() === "true";
 const client = new github.GitHub(token);
 function main() {
-    core.info("Starting update prs");
+    return __awaiter(this, void 0, void 0, function* () {
+        core.info("Starting update prs");
+        const baseBranch = github.context.payload.ref;
+        const pullsResponse = yield client.pulls.list(Object.assign(Object.assign({}, github.context.repo), { base: baseBranch, state: 'open' }));
+        let prs = pullsResponse.data;
+        core.info(JSON.stringify(prs));
+        for (const pr1 of prs.filter(pr => !exclude_drafts || !pr.draft)) {
+            core.info(JSON.stringify(pr1));
+            try {
+                yield client.pulls.updateBranch(Object.assign(Object.assign({}, github.context.repo), { pull_number: pr1.number }));
+            }
+            catch (error) {
+                if (error instanceof Error)
+                    core.error("Failed to update branch: " + JSON.stringify(error));
+            }
+        }
+    });
 }
-main();
+main().then(r => r);

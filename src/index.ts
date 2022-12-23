@@ -5,8 +5,29 @@ const token = core.getInput('token')
 const exclude_drafts = core.getInput('exclude_drafts').toLowerCase() === "true"
 const client = new github.GitHub(token)
 
-function main() {
+async function main() {
     core.info("Starting update prs")
+    const baseBranch = github.context.payload.ref
+    const pullsResponse = await client.pulls.list({
+        ...github.context.repo,
+        base: baseBranch,
+        state: 'open',
+    })
+    let prs = pullsResponse.data
+    core.info(JSON.stringify(prs))
+
+    for (const pr1 of prs.filter(pr => !exclude_drafts || !pr.draft)) {
+        core.info(JSON.stringify(pr1))
+        try {
+            await client.pulls.updateBranch({
+                ...github.context.repo,
+                pull_number: pr1.number,
+            })
+        } catch (error) {
+            if (error instanceof Error)
+                core.error("Failed to update branch: " + JSON.stringify(error))
+        }
+    }
 }
 
-main()
+main().then(r => r)
