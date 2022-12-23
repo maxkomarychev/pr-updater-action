@@ -5,8 +5,8 @@ const token = core.getInput('token')
 const exclude_drafts = core.getInput('exclude_drafts').toLowerCase() === "true"
 const client = new github.GitHub(token)
 
-async function main() {
+function main() {
     core.info("Starting update prs")
 }
 
-await main()
+main()
