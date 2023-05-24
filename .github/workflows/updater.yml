@@ -2,14 +2,16 @@ name: PR update
 
 on:
   push:
-    branches: master
+    branches: main
 
 jobs:
   autoupdate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: update all prs
+      - name: Run build
+        run: yarn build
+      - name: Update all PRs
         uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

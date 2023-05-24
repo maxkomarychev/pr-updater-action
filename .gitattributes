@@ -1,0 +1,4 @@
+* text=auto eol=lf
+
+# don't diff machine generated files
+bin/index.js -diff

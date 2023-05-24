@@ -1,12 +1,33 @@
-name: PR updater
+name: Auto-update pull requests
 description: Keep your pull requests up to date with base branch
 inputs:
   token:
-    required: true
-    description: "Token to perform api calls"
+    required: false
+    description: 'Token used to perform API calls.'
+    default: ${{ github.token }}
+  limit:
+    required: false
+    default: '100'
+    description: 'The maximum number of pull requests to update.'
+  include_drafts:
+    required: false
+    default: 'false'
+    description: 'If true, updates will include pull requests that are open but in a draft state.'
+  include_labels:
+    required: false
+    description: 'If set, only PRs with these labels applied will be updated. Please comma separate labels.'
+  exclude_labels:
+    required: false
+    description: 'If set, PRs with these labels applied will not be updated. Please comma separate labels.'
+
+outputs:
+  updated:
+    description: 'The number of pull requests that were updated.'
+  failed:
+    description: 'The number of pull requests that failed to update.'
 
 runs:
-  using: node12
+  using: node16
   main: bin/index.js
 
 branding:

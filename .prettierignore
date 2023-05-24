@@ -1,0 +1,13 @@
+**/.git
+**/.svn
+**/.hg
+**/node_modules
+
+*.lock
+package.json
+*.log
+.*ignore
+.*rc
+.git*
+
+bin/

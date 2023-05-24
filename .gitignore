@@ -1,1 +1,9 @@
 node_modules
+*.log
+.husky
+.DS_Store
+.env
+npm-debug.log*
+coverage/
+
+bin/
