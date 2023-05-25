@@ -43,7 +43,7 @@ jobs:
         with:
           name: coverage-data-${{ github.run_id }}
           path: |
-            coverage/**/*.json
+            coverage/coverage*.json
       - name: Coverage summary
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:

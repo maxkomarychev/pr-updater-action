@@ -23,12 +23,12 @@
   "scripts": {
     "build": "tsc && ncc build -o bin src/index.ts",
     "clean": "rm -rf bin",
-    "coverage": "echo '🚧 Tests coming soon' #jest --coverage",
+    "coverage": "jest --coverage",
     "lint": "yarn lint-staged",
     "precommit": "lint-staged",
     "prepare": "husky install",
     "semantic-release": "semantic-release",
-    "test": "echo '🚧 Tests coming soon' #jest"
+    "test": "jest"
   },
   "dependencies": {
     "@actions/core": "^1.10.0",
